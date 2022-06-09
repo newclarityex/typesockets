@@ -22,5 +22,8 @@
   },
   "files": [
     "lib/**/*"
-  ]
+  ],
+  "dependencies": {
+    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.10.0"
+  }
 }
