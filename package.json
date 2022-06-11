@@ -12,18 +12,21 @@
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^28.1.1",
+    "@types/websocket": "^1.0.5",
+    "@types/ws": "^8.5.3",
     "@typescript-eslint/eslint-plugin": "^5.27.1",
     "@typescript-eslint/parser": "^5.27.1",
     "eslint": "^8.17.0",
     "eslint-config-google": "^0.14.0",
     "jest": "^28.1.1",
     "ts-jest": "^28.0.4",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "websocket": "^1.0.34"
   },
   "files": [
     "lib/**/*"
   ],
   "dependencies": {
-    "uWebSockets.js": "uNetworking/uWebSockets.js#v20.10.0"
+    "ws": "^8.8.0"
   }
 }
