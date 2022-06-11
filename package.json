@@ -8,7 +8,15 @@
     "test": "jest",
     "build": "tsc"
   },
-  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/newclarityex/YAGCL.js.git"
+  },
+  "keywords": [
+    "websockets",
+    "ws",
+    "typesafe"
+  ],
   "author": "newclarity",
   "license": "MIT",
   "devDependencies": {
@@ -23,6 +31,10 @@
     "ts-jest": "^28.0.4",
     "typescript": "^4.7.3",
     "websocket": "^1.0.34"
+  },
+  "bugs": {
+    "url": "https://github.com/newclarityex/typesockets/issues",
+    "email": "newclearex@gmail.com"
   },
   "files": [
     "lib/**/*"
