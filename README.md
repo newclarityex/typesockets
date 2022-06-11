@@ -41,9 +41,9 @@ Server endpoints are functions that run on the server and are called from the cl
 ```TS
 // Assuming server is created as shown above
 export const serverEndpoints = createServerEndpoints(server, {
-	log: (ws: WebSocket, msg: string) => {
-		console.log(msg);
-	}
+    log: (ws: WebSocket, msg: string) => {
+        console.log(msg);
+    }
 });
 ```
 ### client.ts
@@ -61,9 +61,9 @@ Client endpoints are similar to server endpoints, but instead call client functi
 ```TS
 // Assuming client is created as shown above
 export const clientEndpoints = createClientEndpoints(socket, {
-	log: (msg: string) => {
-		console.log(msg);
-	}
+    log: (msg: string) => {
+        console.log(msg);
+    }
 });
 ```
 ### server.ts
@@ -74,8 +74,8 @@ import { log } from "../path/to/client.ts";
 
 // If we wanted to broadcast the log function to all clients
 server.clients.forEach((client) => {
-	// Sends websocket request to run log on every connected client
-	log(client, "Hello World");
+    // Sends websocket request to run log on every connected client
+    log(client, "Hello World");
 });
 ```
 
