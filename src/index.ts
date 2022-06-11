@@ -1,4 +1,5 @@
-import createClientEndpoints from "./Client";
-import createServerEndpoints from "./Server";
+import createClientEndpoints from "./ClientEndpoints";
+import createServerEndpoints from "./ServerEndpoints";
+import createServer from "./ServerWrapper";
 
-export { createClientEndpoints, createServerEndpoints };
+export { createClientEndpoints, createServerEndpoints, createServer };
