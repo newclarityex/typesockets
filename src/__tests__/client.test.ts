@@ -44,7 +44,7 @@ describe("client endpoints can be defined and used", () => {
                 counter++;
             },
         });
-        const { increment } = clientEndpoints.extractEndpoints();
+        const { increment } = clientEndpoints;
         increment(serverSideClient);
         await waitUntilMessage();
         expect(counter).toBe(1);
@@ -57,7 +57,7 @@ describe("client endpoints can be defined and used", () => {
                 counter += amount;
             }
         });
-        const { increment } = clientEndpoints.extractEndpoints();
+        const { increment } = clientEndpoints;
         increment(serverSideClient, 2);
         await waitUntilMessage();
         expect(counter).toBe(2);
@@ -70,7 +70,7 @@ describe("client endpoints can be defined and used", () => {
                 counter += amount * times;
             }
         });
-        const { increment } = clientEndpoints.extractEndpoints();
+        const { increment } = clientEndpoints;
         increment(serverSideClient, 2, 3);
         await waitUntilMessage();
         expect(counter).toBe(6);

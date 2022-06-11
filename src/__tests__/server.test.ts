@@ -61,21 +61,21 @@ describe("server endpoints can be defined and used", () => {
     });
 
     it("should be able to define server endpoints", async () => {
-        const { increment } = serverEndpoints.extractEndpoints();
+        const { increment } = serverEndpoints;
         increment(clientWs as any);
         await waitUntilMessage();
         expect(counter).toBe(1);
     });
 
     it("should be able to pass arguments to server endpoints", async () => {
-        const { incrementBy } = serverEndpoints.extractEndpoints();
+        const { incrementBy } = serverEndpoints;
         incrementBy(clientWs as any, 2);
         await waitUntilMessage();
         expect(counter).toBe(2);
     });
 
     it("should be able to pass multiple arguments to server endpoints", async () => {
-        const { incrementMultiple } = serverEndpoints.extractEndpoints();
+        const { incrementMultiple } = serverEndpoints;
         incrementMultiple(clientWs as any, 2, 3);
         await waitUntilMessage();
         expect(counter).toBe(6);
