@@ -9,8 +9,8 @@
     "build": "tsc"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "newclarity",
+  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^28.1.1",
     "@types/websocket": "^1.0.5",
