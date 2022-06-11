@@ -1,5 +1,6 @@
-import createServerEndpoints from "../Server";
-import { WebSocketServer } from "ws";
+import createServerEndpoints from "../ServerEndpoints";
+import type { WebSocketServer } from "ws";
+import createServer from "../ServerWrapper";
 import { w3cwebsocket as WebSocket } from "websocket";
 
 describe("server endpoints can be defined and used", () => {
@@ -12,7 +13,7 @@ describe("server endpoints can be defined and used", () => {
         return new Promise((resolve: (value: void) => void) => {
             counter = 0;
 
-            server = new WebSocketServer({ port: 8081 });
+            server = createServer({ port: 8081 });
             serverEndpoints = createServerEndpoints(server as any, {
                 increment: (ws) => {
                     counter++;

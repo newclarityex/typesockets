@@ -1,5 +1,6 @@
-import createClientEndpoints from "../Client";
-import { WebSocketServer } from "ws";
+import createClientEndpoints from "../ClientEndpoints";
+import createServer from "../ServerWrapper";
+import type { WebSocketServer } from "ws";
 import { w3cwebsocket as WebSocket } from "websocket";
 
 describe("client endpoints can be defined and used", () => {
@@ -9,7 +10,7 @@ describe("client endpoints can be defined and used", () => {
 
     function createServerAndClient() {
         return new Promise((resolve: (value: void) => void) => {
-            server = new WebSocketServer({ port: 8080 });
+            server = createServer({ port: 8080 });
             clientWs = new WebSocket("ws://localhost:8080");
             server.on("connection", (ws) => {
                 serverSideClient = ws;
