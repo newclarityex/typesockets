@@ -1,6 +1,6 @@
 import { createServerEndpoints, createServer } from "../Server";
 import type { WebSocketServer } from "ws";
-import { client, w3cwebsocket as WebSocket } from "websocket";
+import { w3cwebsocket as WebSocket } from "websocket";
 
 describe("server endpoints can be defined and used", () => {
     let server: WebSocketServer;
