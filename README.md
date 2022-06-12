@@ -40,7 +40,7 @@ const socket = new Websocket("ws://server-ws.url");
 Server endpoints are functions that run on the server and are called from the client. To create these endpoints, run the `createServerEndpoints` function with the websocket server and a dictionary of functions as parameters. These endpoints can then be exported to be used client side. Then hydrate the functions with their actual functionality and attach it to the server.
 
 ### serverEndpoints.ts
-Creating the endpoints
+Creating the endpoints using empty functions with needed parameters
 ```TS
 import { createServerEndpoints } from "typesockets";
 
@@ -50,7 +50,7 @@ export const serverEndpoints = createServerEndpoints( {
 ```
 
 ### server.ts
-Hydrating and attaching the endpoints
+Hydrating and attaching the endpoints to the websocket server
 ```TS
 import { serverEndpoints } from "../path/to/serverEndpoints.ts";
 
@@ -69,6 +69,7 @@ hydrated.attachServer(server);
 ```
 
 ### client.ts
+Calling the server endpoints from the client
 ```TS
 import { serverEndpoints } from "../path/to/serverEndpoints.ts";
 
@@ -86,6 +87,7 @@ extractedEndpoints.log(socket, "Hello World!");
 Client endpoints are similar to server endpoints, but instead call client functions from the server and do not require hydration, but still need to be attached.
 
 ### clientEndpoints.ts
+Creating the client functions does not require a hydration step, just directly create the functions that need to be run
 ```TS
 // Create the functions directly
 export const clientEndpoints = createClientEndpoints({
@@ -96,6 +98,7 @@ export const clientEndpoints = createClientEndpoints({
 ```
 
 ### client.ts
+Attaching the client endpoints to the websocket client
 ```TS
 import { clientEndpoints } from "../path/to/clientEndpoints.ts";
 
@@ -107,6 +110,7 @@ clientEndpoints.attachClient(socket);
 ```
 
 ### server.ts
+Calling the client endpoints from the server
 ```TS
 import { clientEndpoints } from "../path/to/clientEndpoints.ts";
 
