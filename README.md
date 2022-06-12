@@ -7,11 +7,11 @@ Install this module with `yarn add typesockets` or `npm i typesockets`.
 ## Importing
 ### Node
 ```TS
-const { createServer, createServerEndpoints, creatingClientEndpoints } = require("typesockets");
+const { createServer, createServerEndpoints, createClientEndpoints } = require("typesockets");
 ```
 ### ES6
 ```TS
-import { createServer, createServerEndpoints, creatingClientEndpoints } from "typesockets";
+import { createServer, createServerEndpoints, createClientEndpoints } from "typesockets";
 ```
 The following documentation will follow the ES6 syntax.
 
@@ -70,7 +70,7 @@ hydrated.attachServer(server);
 
 ### client.ts
 ```TS
-import serverEndpoints from "../path/to/serverEndpoints.ts";
+import { serverEndpoints } from "../path/to/serverEndpoints.ts";
 
 // Use the converted functions from the server endpoints
 const extractedEndpoints = serverEndpoints.extracted;
@@ -97,7 +97,7 @@ export const clientEndpoints = createClientEndpoints({
 
 ### client.ts
 ```TS
-import clientEndpoints from "../path/to/clientEndpoints.ts";
+import { clientEndpoints } from "../path/to/clientEndpoints.ts";
 
 // Create client
 const socket = new Websocket("ws://server-ws.url");
@@ -108,7 +108,7 @@ clientEndpoints.attachClient(socket);
 
 ### server.ts
 ```TS
-import clientEndpoints from "../path/to/clientEndpoints.ts";
+import { clientEndpoints } from "../path/to/clientEndpoints.ts";
 
 // Create server
 const server = createServer({ port: 8081 });
