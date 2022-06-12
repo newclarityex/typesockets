@@ -1,5 +1,5 @@
-import createClientEndpoints from "../ClientEndpoints";
-import createServer from "../ServerWrapper";
+import { createClientEndpoints } from "../Client";
+import { createServer } from "../Server";
 import type { WebSocketServer } from "ws";
 import { w3cwebsocket as WebSocket } from "websocket";
 
@@ -7,11 +7,26 @@ describe("client endpoints can be defined and used", () => {
     let server: WebSocketServer;
     let serverSideClient: any;
     let clientWs: WebSocket;
+    let counter = 0;
+    let clientEndpoints = createClientEndpoints({
+        increment: () => {
+            counter++;
+        },
+        incrementBy: (amount: number) => {
+            counter += amount;
+        },
+        incrementMultiple: (amount: number, times: number) => {
+            counter += amount * times;
+        }
+    });
 
     function createServerAndClient() {
         return new Promise((resolve: (value: void) => void) => {
             server = createServer({ port: 8080 });
             clientWs = new WebSocket("ws://localhost:8080");
+
+            clientEndpoints.attachClient(clientWs as any);
+
             server.on("connection", (ws) => {
                 serverSideClient = ws;
                 resolve();
@@ -30,6 +45,7 @@ describe("client endpoints can be defined and used", () => {
 
     beforeEach(async () => {
         await createServerAndClient();
+        counter = 0;
     });
 
     afterEach(() => {
@@ -38,40 +54,22 @@ describe("client endpoints can be defined and used", () => {
     });
 
     it("should be able to define client endpoints", async () => {
-        let counter = 0;
-        const clientEndpoints = createClientEndpoints(clientWs as any, {
-            increment: () => {
-                counter++;
-            },
-        });
-        const { increment } = clientEndpoints;
+        const { increment } = clientEndpoints.extracted;
         increment(serverSideClient);
         await waitUntilMessage();
         expect(counter).toBe(1);
     });
 
     it("should be able to pass arguments to client endpoints", async () => {
-        let counter = 0;
-        const clientEndpoints = createClientEndpoints(clientWs as any, {
-            increment: (amount: number) => {
-                counter += amount;
-            }
-        });
-        const { increment } = clientEndpoints;
-        increment(serverSideClient, 2);
+        const { incrementBy } = clientEndpoints.extracted;
+        incrementBy(serverSideClient, 2);
         await waitUntilMessage();
         expect(counter).toBe(2);
     });
 
     it("should be able to pass multiple arguments to client endpoints", async () => {
-        let counter = 0;
-        const clientEndpoints = createClientEndpoints(clientWs as any, {
-            increment: (amount: number, times: number) => {
-                counter += amount * times;
-            }
-        });
-        const { increment } = clientEndpoints;
-        increment(serverSideClient, 2, 3);
+        const { incrementMultiple } = clientEndpoints.extracted;
+        incrementMultiple(serverSideClient, 2, 3);
         await waitUntilMessage();
         expect(counter).toBe(6);
     });
